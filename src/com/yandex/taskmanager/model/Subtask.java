@@ -1,3 +1,5 @@
+package com.yandex.taskmanager.model;
+import com.yandex.taskmanager.service.Status;
 
 public class Subtask extends Task {
 
@@ -19,7 +21,7 @@ public class Subtask extends Task {
 
     @Override
     public String toString() {
-        return "Subtask{" +
+        return "com.yandex.taskmanager.model.Subtask{" +
                 "name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +
                 ", id=" + getId() +
