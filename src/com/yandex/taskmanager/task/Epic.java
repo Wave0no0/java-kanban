@@ -1,12 +1,12 @@
-package com.yandex.taskmanager.model;
-import com.yandex.taskmanager.service.Status;
+package com.yandex.taskmanager.task;
 
-import java.util.List;
 import java.util.ArrayList;
+
+import com.yandex.taskmanager.Status;
 
 public class Epic extends Task {
 
-    private List<Subtask> subtaskList = new ArrayList<>();
+    private ArrayList<Subtask> subtaskList = new ArrayList<>();
 
     public Epic(String name, String description) {
         super(name, description);
@@ -24,17 +24,17 @@ public class Epic extends Task {
         subtaskList.clear();
     }
 
-    public List<Subtask> getSubtaskList() {
+    public ArrayList<Subtask> getSubtaskList() {
         return subtaskList;
     }
 
-    public void setSubtaskList(List<Subtask> subtaskList) {
+    public void setSubtaskList(ArrayList<Subtask> subtaskList) {
         this.subtaskList = subtaskList;
     }
 
     @Override
     public String toString() {
-        return "com.yandex.taskmanager.model.Epic{" +
+        return "Task.Epic{" +
                 "name= " + getName() + '\'' +
                 ", description = " + getDescription() + '\'' +
                 ", id=" + getId() +

@@ -1,12 +1,11 @@
-package com.yandex.taskmanager.model;
-import com.yandex.taskmanager.service.Status;
+package com.yandex.taskmanager.task;
 
-import java.util.Objects;
+import com.yandex.taskmanager.Status;
 
 public class Task {
 
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
     private int id;
     private Status status;
 
@@ -27,16 +26,8 @@ public class Task {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getId() {
@@ -60,16 +51,16 @@ public class Task {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Task task = (Task) object;
-        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description) && status == task.status;
+        return id == task.id;
     }
 
     @Override
     public int hashCode() {
         int hash = 17;
-        hash = hash * 31 + id;
         if (name != null) {
             hash = hash + name.hashCode();
         }
+        hash = hash * 31;
         if (description != null) {
             hash = hash + description.hashCode();
         }
@@ -78,7 +69,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "com.yandex.taskmanager.model.Task{" +
+        return "Task.Task{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", id=" + id +
