@@ -1,7 +1,8 @@
 package com.yandex.taskmanager.manager;
 
 import com.yandex.taskmanager.task.Task;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
@@ -11,13 +12,14 @@ public class InMemoryHistoryManager implements HistoryManager {
     @Override
     public void add(Task task) {
         if (historyList.size() == MAX_HISTORY_STORAGE) {
-            historyList.removeFirst();
+            historyList.remove(0); // Используем метод remove(0) для удаления первого элемента
         }
         historyList.add(task);
     }
 
     @Override
     public List<Task> getHistory() {
-        return historyList;
+        // Возвращаем копию списка для защиты внутреннего состояния
+        return new ArrayList<>(historyList);
     }
 }
