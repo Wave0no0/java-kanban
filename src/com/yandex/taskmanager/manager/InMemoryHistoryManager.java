@@ -24,11 +24,14 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void add(Task task) {
+        // Если задача уже есть в истории, удаляем её
         if (historyMap.containsKey(task.getId())) {
             remove(task.getId());
         }
+        // Создаем новый узел для задачи
         Node newNode = new Node(task);
         linkLast(newNode);
+        // Обновляем historyMap с новым узлом
         historyMap.put(task.getId(), newNode);
     }
 
@@ -66,12 +69,12 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (node.prev != null) {
             node.prev.next = node.next;
         } else {
-            head = node.next;
+            head = node.next; // Если удаляемый узел - голова
         }
         if (node.next != null) {
             node.next.prev = node.prev;
         } else {
-            tail = node.prev;
+            tail = node.prev; // Если удаляемый узел - хвост
         }
     }
 }
