@@ -145,11 +145,6 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public Task deleteTaskByID(int id) {
-        return tasks.remove(id);
-    }
-
-    @Override
     public Epic deleteEpicByID(int id) {
         List<Subtask> epicSubtasks = epics.get(id).getSubtaskList();
         for (Subtask subtask : epicSubtasks) {
@@ -177,6 +172,15 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public List<Task> getHistory() {
         return historyManager.getHistory();
+    }
+
+    @Override
+    public Task deleteTaskByID(int id) {
+        Task task = tasks.remove(id);
+        if (task != null) {
+            historyManager.remove(id); // Удаляем задачу из истории
+        }
+        return task;
     }
 
     // Вспомогательный метод для контроля статуса эпика при удалении или изменении подзадач
