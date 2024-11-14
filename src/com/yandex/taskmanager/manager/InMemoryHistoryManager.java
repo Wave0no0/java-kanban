@@ -1,25 +1,77 @@
 package com.yandex.taskmanager.manager;
 
 import com.yandex.taskmanager.task.Task;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private static final int MAX_HISTORY_STORAGE = 10;
-    private final List<Task> historyList = new ArrayList<>();
+    private static class Node {
+        Task task;
+        Node prev;
+        Node next;
+
+        Node(Task task) {
+            this.task = task;
+        }
+    }
+
+    private final HashMap<Integer, Node> historyMap = new HashMap<>();
+    private Node head;
+    private Node tail;
 
     @Override
     public void add(Task task) {
-        if (historyList.size() == MAX_HISTORY_STORAGE) {
-            historyList.remove(0); // Используем метод remove(0) для удаления первого элемента
+        if (historyMap.containsKey(task.getId())) {
+            remove(task.getId());
         }
-        historyList.add(task);
+        Node newNode = new Node(task);
+        linkLast(newNode);
+        historyMap.put(task.getId(), newNode);
+    }
+
+    @Override
+    public void remove(int id) {
+        Node nodeToRemove = historyMap.remove(id);
+        if (nodeToRemove != null) {
+            removeNode(nodeToRemove);
+        }
     }
 
     @Override
     public List<Task> getHistory() {
-        // Возвращаем копию списка для защиты внутреннего состояния
-        return new ArrayList<>(historyList);
+        List<Task> tasks = new ArrayList<>();
+        Node current = head;
+        while (current != null) {
+            tasks.add(current.task);
+            current = current.next;
+        }
+        return tasks;
+    }
+
+    private void linkLast(Node newNode) {
+        if (tail == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        }
+    }
+
+    private void removeNode(Node node) {
+        if (node.prev != null) {
+            node.prev.next = node.next;
+        } else {
+            head = node.next;
+        }
+        if (node.next != null) {
+            node.next.prev = node.prev;
+        } else {
+            tail = node.prev;
+        }
     }
 }
