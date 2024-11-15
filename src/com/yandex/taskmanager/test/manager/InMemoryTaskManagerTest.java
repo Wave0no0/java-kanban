@@ -1,3 +1,4 @@
+
 package com.yandex.taskmanager.test.manager;
 
 import com.yandex.taskmanager.Status;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryTaskManagerTest {
 
-    private TaskManager taskManager;
+    private static TaskManager taskManager;
 
     @BeforeEach
     public void beforeEach() {
@@ -24,48 +25,48 @@ class InMemoryTaskManagerTest {
 
     @Test
     void addNewTask() {
+        //проверяем, что InMemoryTaskManager добавляет задачи и может найти их по id;
         final Task task = taskManager.addTask(new Task("Test addNewTask", "Test addNewTask description"));
         final Task savedTask = taskManager.getTaskByID(task.getId());
-
         assertNotNull(savedTask, "Задача не найдена.");
         assertEquals(task, savedTask, "Задачи не совпадают.");
 
         final List<Task> tasks = taskManager.getTasks();
         assertNotNull(tasks, "Задачи не возвращаются.");
         assertEquals(1, tasks.size(), "Неверное количество задач.");
-        assertEquals(task, tasks.get(0), "Задачи не совпадают.");
+        assertEquals(task, tasks.getFirst(), "Задачи не совпадают.");
     }
 
     @Test
     void addNewEpicAndSubtasks() {
-        final Epic epic = taskManager.addEpic(new Epic("Сделать ремонт", "Нужно успеть за отпуск"));
-        final Subtask subtask1 = taskManager.addSubtask(new Subtask("Поклеить обои", "Обязательно светлые!", epic.getId()));
-        final Subtask subtask2 = taskManager.addSubtask(new Subtask("Установить новую технику", "Старую продать на Авито", epic.getId()));
-        final Subtask subtask3 = taskManager.addSubtask(new Subtask("Заказать книжный шкаф", "Из темного дерева", epic.getId()));
-
-        final Epic savedEpic = taskManager.getEpicByID(epic.getId());
-        final Subtask savedSubtask1 = taskManager.getSubtaskByID(subtask1.getId());
-        final Subtask savedSubtask2 = taskManager.getSubtaskByID(subtask2.getId());
-        final Subtask savedSubtask3 = taskManager.getSubtaskByID(subtask3.getId());
-
+        //проверяем, что InMemoryTaskManager добавляет эпики и подзадачи и может найти их по id;
+        final Epic flatRenovation = taskManager.addEpic(new Epic("Сделать ремонт",
+                "Нужно успеть за отпуск"));
+        final Subtask flatRenovationSubtask1 = taskManager.addSubtask(new Subtask("Поклеить обои",
+                "Обязательно светлые!", flatRenovation.getId()));
+        final Subtask flatRenovationSubtask2 = taskManager.addSubtask(new Subtask("Установить новую технику",
+                "Старую продать на Авито", flatRenovation.getId()));
+        final Subtask flatRenovationSubtask3 = taskManager.addSubtask(new Subtask("Заказать книжный шкаф", "Из темного дерева",
+                flatRenovation.getId()));
+        final Epic savedEpic = taskManager.getEpicByID(flatRenovation.getId());
+        final Subtask savedSubtask1 = taskManager.getSubtaskByID(flatRenovationSubtask1.getId());
+        final Subtask savedSubtask2 = taskManager.getSubtaskByID(flatRenovationSubtask2.getId());
+        final Subtask savedSubtask3 = taskManager.getSubtaskByID(flatRenovationSubtask3.getId());
         assertNotNull(savedEpic, "Эпик не найден.");
-        assertNotNull(savedSubtask1, "Подзадача 1 не найдена.");
-        assertNotNull(savedSubtask2, "Подзадача 2 не найдена.");
-        assertNotNull(savedSubtask3, "Подзадача 3 не найдена.");
-
-        assertEquals(epic, savedEpic, "Эпики не совпадают.");
-        assertEquals(subtask1, savedSubtask1, "Подзадача 1 не совпадает.");
-        assertEquals(subtask2, savedSubtask2, "Подзадача 2 не совпадает.");
-        assertEquals(subtask3, savedSubtask3, "Подзадача 3 не совпадает.");
+        assertNotNull(savedSubtask2, "Подзадача не найдена.");
+        assertEquals(flatRenovation, savedEpic, "Эпики не совпадают.");
+        assertEquals(flatRenovationSubtask1, savedSubtask1, "Подзадачи не совпадают.");
+        assertEquals(flatRenovationSubtask3, savedSubtask3, "Подзадачи не совпадают.");
 
         final List<Epic> epics = taskManager.getEpics();
         assertNotNull(epics, "Эпики не возвращаются.");
         assertEquals(1, epics.size(), "Неверное количество эпиков.");
-        assertEquals(epic, epics.get(0), "Эпики не совпадают.");
+        assertEquals(flatRenovation, epics.getFirst(), "Эпики не совпадают.");
 
         final List<Subtask> subtasks = taskManager.getSubtasks();
         assertNotNull(subtasks, "Подзадачи не возвращаются.");
         assertEquals(3, subtasks.size(), "Неверное количество подзадач.");
+        assertEquals(savedSubtask1, subtasks.getFirst(), "Подзадачи не совпадают.");
     }
 
     @Test
@@ -74,43 +75,101 @@ class InMemoryTaskManagerTest {
         taskManager.addTask(expected);
         final Task updatedTask = new Task(expected.getId(), "новое имя", "новое описание", Status.DONE);
         final Task actual = taskManager.updateTask(updatedTask);
-        assertEquals(expected, actual, "Вернулась задача с другим id.");
+        assertEquals(expected, actual, "Вернулась задачи с другим id");
+    }
+
+    @Test
+    public void updateEpicShouldReturnEpicWithTheSameId() {
+        final Epic expected = new Epic("имя", "описание");
+        taskManager.addEpic(expected);
+        final Epic updatedEpic = new Epic(expected.getId(), "новое имя", "новое описание", Status.DONE);
+        final Epic actual = taskManager.updateEpic(updatedEpic);
+        assertEquals(expected, actual, "Вернулся эпик с другим id");
+    }
+
+    @Test
+    public void updateSubtaskShouldReturnSubtaskWithTheSameId() {
+        final Epic epic = new Epic("имя", "описание");
+        taskManager.addEpic(epic);
+        final Subtask expected = new Subtask("имя", "описание", epic.getId());
+        taskManager.addSubtask(expected);
+        final Subtask updatedSubtask = new Subtask(expected.getId(), "новое имя", "новое описание",
+                Status.DONE, epic.getId());
+        final Subtask actual = taskManager.updateSubtask(updatedSubtask);
+        assertEquals(expected, actual, "Вернулась подзадача с другим id");
+    }
+
+    @Test
+    public void deleteTasksShouldReturnEmptyList() {
+        taskManager.addTask(new Task("Купить книги", "Список в заметках"));
+        taskManager.addTask(new Task("Помыть полы", "С новым средством"));
+        taskManager.deleteTasks();
+        List<Task> tasks = taskManager.getTasks();
+        assertTrue(tasks.isEmpty(), "После удаления задач список должен быть пуст.");
+    }
+
+    @Test
+    public void deleteEpicsShouldReturnEmptyList() {
+        taskManager.addEpic(new Epic("Сделать ремонт", "Нужно успеть за отпуск"));
+        taskManager.deleteEpics();
+        List<Epic> epics = taskManager.getEpics();
+        assertTrue(epics.isEmpty(), "После удаления эпиков список должен быть пуст.");
+    }
+
+    @Test
+    public void deleteSubtasksShouldReturnEmptyList() {
+        Epic flatRenovation = new Epic("Сделать ремонт", "Нужно успеть за отпуск");
+        taskManager.addEpic(flatRenovation);
+        taskManager.addSubtask(new Subtask("Поклеить обои", "Обязательно светлые!",
+                flatRenovation.getId()));
+        taskManager.addSubtask(new Subtask("Установить новую технику", "Старую продать на Авито",
+                flatRenovation.getId()));
+        taskManager.addSubtask(new Subtask("Заказать книжный шкаф", "Из темного дерева",
+                flatRenovation.getId()));
+
+        taskManager.deleteSubtasks();
+        List<Subtask> subtasks = taskManager.getSubtasks();
+        assertTrue(subtasks.isEmpty(), "После удаления подзадач список должен быть пуст.");
     }
 
     @Test
     public void deleteTaskByIdShouldReturnNullIfKeyIsMissing() {
         taskManager.addTask(new Task(1, "Купить книги", "Список в заметках", Status.NEW));
         taskManager.addTask(new Task(2, "Помыть полы", "С новым средством", Status.DONE));
-        assertNull(taskManager.deleteTaskByID(3), "Удаление несуществующей задачи должно вернуть null.");
+        assertNull(taskManager.deleteTaskByID(3));
     }
 
     @Test
     public void deleteEpicByIdShouldReturnNullIfKeyIsMissing() {
         taskManager.addEpic(new Epic(1, "Сделать ремонт", "Нужно успеть за отпуск", Status.IN_PROGRESS));
         taskManager.deleteEpicByID(1);
-        assertNull(taskManager.deleteEpicByID(1), "Удаление несуществующего эпика должно вернуть null.");
+        assertNull(taskManager.deleteTaskByID(1));
     }
 
     @Test
     public void deleteSubtaskByIdShouldReturnNullIfKeyIsMissing() {
-        Epic epic = new Epic("Сделать ремонт", "Нужно успеть за отпуск");
-        taskManager.addEpic(epic);
-        taskManager.addSubtask(new Subtask("Поклеить обои", "Обязательно светлые!", epic.getId()));
-        taskManager.addSubtask(new Subtask("Установить новую технику", "Старую продать на Авито", epic.getId()));
-        taskManager.addSubtask(new Subtask("Заказать книжный шкаф", "Из темного дерева", epic.getId()));
-
-        assertNull(taskManager.deleteSubtaskByID(5), "Удаление несуществующей подзадачи должно вернуть null.");
+        Epic flatRenovation = new Epic("Сделать ремонт", "Нужно успеть за отпуск");
+        taskManager.addEpic(flatRenovation);
+        taskManager.addSubtask(new Subtask("Поклеить обои", "Обязательно светлые!",
+                flatRenovation.getId()));
+        taskManager.addSubtask(new Subtask("Установить новую технику", "Старую продать на Авито",
+                flatRenovation.getId()));
+        taskManager.addSubtask(new Subtask("Заказать книжный шкаф", "Из темного дерева",
+                flatRenovation.getId()));
+        assertNull(taskManager.deleteSubtaskByID(5));
     }
+
 
     @Test
     void TaskCreatedAndTaskAddedShouldHaveSameVariables() {
         Task expected = new Task(1, "Помыть полы", "С новым средством", Status.DONE);
         taskManager.addTask(expected);
         List<Task> list = taskManager.getTasks();
-        Task actual = list.get(0);
-        assertEquals(expected.getId(), actual.getId(), "ID задач не совпадают.");
-        assertEquals(expected.getName(), actual.getName(), "Имена задач не совпадают.");
-        assertEquals(expected.getDescription(), actual.getDescription(), "Описание задач не совпадает.");
-        assertEquals(expected.getStatus(), actual.getStatus(), "Статусы задач не совпадают.");
+        Task actual = list.getFirst();
+        assertEquals(expected.getId(), actual.getId());
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getDescription(), actual.getDescription());
+        assertEquals(expected.getStatus(), actual.getStatus());
     }
+
 }
