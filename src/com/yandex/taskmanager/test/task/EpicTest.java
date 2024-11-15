@@ -3,7 +3,6 @@ package com.yandex.taskmanager.test.task;
 import org.junit.jupiter.api.Test;
 import com.yandex.taskmanager.Status;
 import com.yandex.taskmanager.task.Epic;
-import com.yandex.taskmanager.task.Subtask;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,6 +11,7 @@ class EpicTest {
     @Test
     public void epicsWithEqualIdShouldBeEqual() {
         Epic epic1 = new Epic(10, "Сделать ремонт", "Уложиться в 2 миллиона", Status.NEW);
+        sprint_6-solution
         Epic epic2 = new Epic(10, "Подготовиться к собеседованию", "1 июля в 11:00", Status.IN_PROGRESS);
         assertEquals(epic1, epic2, "Ошибка! Наследники класса Task должны быть равны друг другу, если равен их id;");
     }
@@ -35,5 +35,10 @@ class EpicTest {
         Epic epic = new Epic(1, "Эпик", "Описание эпика", Status.NEW);
         String expected = "Task.Epic{name= Эпик', description = 'Описание эпика', id=1, subtaskList.size = 0, status = NEW}";
         assertEquals(expected, epic.toString(), "Метод toString() возвращает неправильный формат.");
+        Epic epic2 = new Epic(10, "Подготовиться к собеседованию", "1 июля в 11:00",
+                Status.IN_PROGRESS);
+        assertEquals(epic1, epic2,
+                "Ошибка! Наследники класса Task должны быть равны друг другу, если равен их id;");
+ main
     }
 }
