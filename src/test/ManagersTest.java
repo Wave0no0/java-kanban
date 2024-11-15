@@ -1,4 +1,4 @@
-package com.yandex.taskmanager.test;
+package test;
 
 import com.yandex.taskmanager.manager.InMemoryHistoryManager;
 import com.yandex.taskmanager.manager.InMemoryTaskManager;

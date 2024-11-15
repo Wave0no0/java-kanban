@@ -1,5 +1,5 @@
 
-package com.yandex.taskmanager.test;
+package test;
 
 import com.yandex.taskmanager.Status;
 import com.yandex.taskmanager.manager.Managers;
