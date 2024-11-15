@@ -3,21 +3,21 @@ package com.yandex.taskmanager.test.task;
 import org.junit.jupiter.api.Test;
 import com.yandex.taskmanager.Status;
 import com.yandex.taskmanager.task.Epic;
+import com.yandex.taskmanager.task.Subtask;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EpicTest {
 
     @Test
-    public void epicsWithEqualIdShouldBeEqual() {
+    public void EpicsWithEqualIdShouldBeEqual() {
         Epic epic1 = new Epic(10, "Сделать ремонт", "Уложиться в 2 миллиона", Status.NEW);
-        sprint_6-solution
         Epic epic2 = new Epic(10, "Подготовиться к собеседованию", "1 июля в 11:00", Status.IN_PROGRESS);
         assertEquals(epic1, epic2, "Ошибка! Наследники класса Task должны быть равны друг другу, если равен их id;");
     }
 
     @Test
-    public void epicShouldContainSubtasks() {
+    public void EpicShouldContainSubtasks() {
         Epic epic = new Epic("Эпик", "Описание эпика");
         Subtask subtask1 = new Subtask("Подзадача 1", "Описание подзадачи 1", epic.getId());
         Subtask subtask2 = new Subtask("Подзадача 2", "Описание подзадачи 2", epic.getId());
@@ -31,14 +31,9 @@ class EpicTest {
     }
 
     @Test
-    public void epicToStringShouldReturnCorrectFormat() {
+    public void EpicToStringShouldReturnCorrectFormat() {
         Epic epic = new Epic(1, "Эпик", "Описание эпика", Status.NEW);
         String expected = "Task.Epic{name= Эпик', description = 'Описание эпика', id=1, subtaskList.size = 0, status = NEW}";
         assertEquals(expected, epic.toString(), "Метод toString() возвращает неправильный формат.");
-        Epic epic2 = new Epic(10, "Подготовиться к собеседованию", "1 июля в 11:00",
-                Status.IN_PROGRESS);
-        assertEquals(epic1, epic2,
-                "Ошибка! Наследники класса Task должны быть равны друг другу, если равен их id;");
- main
     }
 }
