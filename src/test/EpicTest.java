@@ -33,7 +33,7 @@ class EpicTest {
     @Test
     public void epicToStringShouldReturnCorrectFormat() {
         Epic epic = new Epic(1, "Эпик", "Описание эпика", Status.NEW);
-        String expected = "Task.Epic{name= Эпик', description = 'Описание эпика', id=1, subtaskList.size = 0, status = NEW}";
+        String expected = "Task.Epic{name= 'Эпик', description = 'Описание эпика', id=1, subtaskList.size = 0, status = NEW}";
         assertEquals(expected, epic.toString(), "Метод toString() возвращает неправильный формат.");
     }
 }
