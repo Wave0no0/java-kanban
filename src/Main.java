@@ -60,7 +60,7 @@ public class Main {
     }
 
     private static void printViewHistory() {
-        // Просматриваем несколько задач
+        //просматриваем 11 задач, в истории должны отобразиться последние 10
         taskManager.getTaskByID(1);
         taskManager.getTaskByID(2);
         taskManager.getEpicByID(3);
