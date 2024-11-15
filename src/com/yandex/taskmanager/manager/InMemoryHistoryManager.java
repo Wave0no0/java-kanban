@@ -66,7 +66,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (node.next != null) {
             node.next.prev = node.prev; // Устанавливаем предыдущий для следующего узла
         } else {
-            tail = node.prev; // Если удаляем хвост, обновляем хвост
+            tail = node.prev; // Если удаляем хвост, обновляем хвост.
         }
     }
 }
