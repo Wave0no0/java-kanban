@@ -1,5 +1,5 @@
 
-package com.yandex.taskmanager.test.manager;
+package test;
 
 import com.yandex.taskmanager.Status;
 import com.yandex.taskmanager.manager.Managers;
@@ -161,7 +161,7 @@ class InMemoryTaskManagerTest {
 
 
     @Test
-    void TaskCreatedAndTaskAddedShouldHaveSameVariables() {
+    void taskCreatedAndTaskAddedShouldHaveSameVariables() {
         Task expected = new Task(1, "Помыть полы", "С новым средством", Status.DONE);
         taskManager.addTask(expected);
         List<Task> list = taskManager.getTasks();
