@@ -10,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class EpicTest {
 
     @Test
-    public void EpicsWithEqualIdShouldBeEqual() {
+    public void epicsWithEqualIdShouldBeEqual() {
         Epic epic1 = new Epic(10, "Сделать ремонт", "Уложиться в 2 миллиона", Status.NEW);
         Epic epic2 = new Epic(10, "Подготовиться к собеседованию", "1 июля в 11:00", Status.IN_PROGRESS);
         assertEquals(epic1, epic2, "Ошибка! Наследники класса Task должны быть равны друг другу, если равен их id;");
     }
 
     @Test
-    public void EpicShouldContainSubtasks() {
+    public void epicShouldContainSubtasks() {
         Epic epic = new Epic("Эпик", "Описание эпика");
         Subtask subtask1 = new Subtask("Подзадача 1", "Описание подзадачи 1", epic.getId());
         Subtask subtask2 = new Subtask("Подзадача 2", "Описание подзадачи 2", epic.getId());
@@ -31,7 +31,7 @@ class EpicTest {
     }
 
     @Test
-    public void EpicToStringShouldReturnCorrectFormat() {
+    public void epicToStringShouldReturnCorrectFormat() {
         Epic epic = new Epic(1, "Эпик", "Описание эпика", Status.NEW);
         String expected = "Task.Epic{name= Эпик', description = 'Описание эпика', id=1, subtaskList.size = 0, status = NEW}";
         assertEquals(expected, epic.toString(), "Метод toString() возвращает неправильный формат.");
