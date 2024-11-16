@@ -35,8 +35,8 @@ public class Epic extends Task {
     @Override
     public String toString() {
         return "Task.Epic{" +
-                "name= " + getName() + '\'' +
-                ", description = " + getDescription() + '\'' +
+                "name= '" + getName() + '\'' + // Открывающая кавычка перед значением name
+                ", description = '" + getDescription() + '\'' + // Открывающая и закрывающая кавычки вокруг description
                 ", id=" + getId() +
                 ", subtaskList.size = " + subtaskList.size() +
                 ", status = " + getStatus() +

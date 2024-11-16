@@ -18,15 +18,17 @@ public class InMemoryHistoryManager implements HistoryManager {
     @Override
     public void add(Task task) {
         if (taskMap.containsKey(task.getId())) {
-            // Если задача уже есть в истории, удаляем её узел
             removeNode(taskMap.get(task.getId()));
         }
-        // Создаем новый узел для задачи
         Node newNode = new Node(task);
         linkLast(newNode);
-        // Сохраняем узел в HashMap
         taskMap.put(task.getId(), newNode);
+        if (taskMap.size() > 10) {
+            taskMap.remove(head.task.getId());
+            removeNode(head);
+        }
     }
+
 
     @Override
     public void remove(int id) {
