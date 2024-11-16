@@ -74,7 +74,7 @@ public class Main {
         taskManager.getSubtaskByID(6);
 
         System.out.println();
-        System.out.println("История просмотров:");
+        System.out.println("История просмотровВ:");
         for (Task task : taskManager.getHistory()) {
             System.out.println(task);
         }
