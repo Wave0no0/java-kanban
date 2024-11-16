@@ -1,4 +1,4 @@
-package com.yandex.taskmanager.test.manager;
+package com.yandex.taskmanager.manager;
 
 import com.yandex.taskmanager.Status;
 import com.yandex.taskmanager.manager.Managers;

@@ -1,4 +1,4 @@
-package com.yandex.taskmanager.test.task;
+package com.yandex.taskmanager.task;
 
 import org.junit.jupiter.api.Test;
 import com.yandex.taskmanager.Status;
