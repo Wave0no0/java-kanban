@@ -3,6 +3,7 @@ package com.yandex.taskmanager.manager;
 import com.yandex.taskmanager.task.Task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,7 +30,6 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 
-
     @Override
     public void remove(int id) {
         Node nodeToRemove = taskMap.remove(id);
@@ -46,7 +46,7 @@ public class InMemoryHistoryManager implements HistoryManager {
             tasks.add(current.task);
             current = current.next;
         }
-        return tasks;
+        return Collections.unmodifiableList(tasks); // Возвращаем неизменяемый список
     }
 
     private void linkLast(Node newNode) {
@@ -69,6 +69,16 @@ public class InMemoryHistoryManager implements HistoryManager {
             node.next.prev = node.prev; // Устанавливаем предыдущий для следующего узла
         } else {
             tail = node.prev; // Если удаляем хвост, обновляем хвост
+        }
+    }
+
+    private static class Node { // Приватный статический вложенный класс
+        Task task;
+        Node next;
+        Node prev;
+
+        Node(Task task) {
+            this.task = task;
         }
     }
 }
