@@ -12,8 +12,9 @@ class FileBackedTaskManagerTest {
 
     @Test
     void testSaveAndLoadTasks() {
-        // Создаем временный файл
+        // Создаем файл
         File file = new File("tasks.csv");
+        file.delete(); // Удаляем файл, если он существует
         file.deleteOnExit(); // Удаляем файл при завершении программы
 
         FileBackedTaskManager manager = new FileBackedTaskManager(file);
