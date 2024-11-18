@@ -1,5 +1,4 @@
-
-package com.yandex.taskmanager.test.manager;
+package com.yandex.taskmanager.manager;
 
 import com.yandex.taskmanager.Status;
 import com.yandex.taskmanager.manager.Managers;
@@ -46,11 +45,10 @@ class InMemoryHistoryManagerTest {
         taskManager.updateTask(new Task(washFloor.getId(), "Не забыть помыть полы",
                 "Можно и без средства", Status.IN_PROGRESS));
         List<Task> tasks = taskManager.getHistory();
-        Task oldTask = tasks.getFirst();
+        Task oldTask = tasks.get(0);
         assertEquals(washFloor.getName(), oldTask.getName(), "В истории не сохранилась старая версия задачи");
         assertEquals(washFloor.getDescription(), oldTask.getDescription(),
                 "В истории не сохранилась старая версия задачи");
-
     }
 
     @Test
@@ -61,7 +59,7 @@ class InMemoryHistoryManagerTest {
         taskManager.updateEpic(new Epic(flatRenovation.getId(), "Новое имя", "новое описание",
                 Status.IN_PROGRESS));
         List<Task> epics = taskManager.getHistory();
-        Epic oldEpic = (Epic) epics.getFirst();
+        Epic oldEpic = (Epic) epics.get(0);
         assertEquals(flatRenovation.getName(), oldEpic.getName(),
                 "В истории не сохранилась старая версия эпика");
         assertEquals(flatRenovation.getDescription(), oldEpic.getDescription(),
@@ -79,10 +77,10 @@ class InMemoryHistoryManagerTest {
         taskManager.updateSubtask(new Subtask(flatRenovationSubtask3.getId(), "Новое имя",
                 "новое описание", Status.IN_PROGRESS, flatRenovation.getId()));
         List<Task> subtasks = taskManager.getHistory();
-        Subtask oldSubtask = (Subtask) subtasks.getFirst();
+        Subtask oldSubtask = (Subtask) subtasks.get(0);
         assertEquals(flatRenovationSubtask3.getName(), oldSubtask.getName(),
-                "В истории не сохранилась старая версия эпика");
+                "В истории не сохранилась старая версия подзадачи");
         assertEquals(flatRenovationSubtask3.getDescription(), oldSubtask.getDescription(),
-                "В истории не сохранилась старая версия эпика");
+                "В истории не сохранилась старая версия подзадачи");
     }
 }
