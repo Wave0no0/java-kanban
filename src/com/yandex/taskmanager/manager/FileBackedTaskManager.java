@@ -39,25 +39,35 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             String content = Files.readString(file.toPath());
             String[] lines = content.split(System.lineSeparator());
 
-            for (String line : lines) {
-                if (line.trim().isEmpty()) {
-                    continue;
+            // Пропускаем заголовок
+            for (int i = 1; i < lines.length; i++) {
+                String line = lines[i].trim();
+                if (line.isEmpty()) {
+                    continue; // Игнорируем пустые строки
                 }
 
                 String[] parts = line.split(",");
-                String taskType = parts[0];
+                if (parts.length < 5) {
+                    throw new ManagerSaveException("Неверное количество полей в строке: " + line);
+                }
+
+                int id = Integer.parseInt(parts[0]);
+                String taskType = parts[1];
 
                 switch (taskType) {
                     case "TASK":
-                        Task task = new Task(Integer.parseInt(parts[1]), parts[2], parts[3], Status.valueOf(parts[4]));
+                        Task task = new Task(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()));
                         addTask(task);
                         break;
                     case "EPIC":
-                        Epic epic = new Epic(Integer.parseInt(parts[1]), parts[2], parts[3], Status.valueOf(parts[4]));
+                        Epic epic = new Epic(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()));
                         addEpic(epic);
                         break;
                     case "SUBTASK":
-                        Subtask subtask = new Subtask(Integer.parseInt(parts[1]), parts[2], parts[3], Status.valueOf(parts[4]), Integer.parseInt(parts[5]));
+                        if (parts.length != 6) {
+                            throw new ManagerSaveException("Неверное количество полей для подзадачи: " + line);
+                        }
+                        Subtask subtask = new Subtask(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()), Integer.parseInt(parts[5]));
                         addSubtask(subtask);
                         break;
                     default:
@@ -76,15 +86,43 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     private void saveToFile() {
         try {
             StringBuilder content = new StringBuilder();
+
+            // Записываем заголовки
+            content.append("id,type,name,description,status");
+            content.append(System.lineSeparator());
+
+            // Записываем задачи
             for (Task task : getTasks()) {
-                content.append("TASK,").append(task.getId()).append(",").append(task.getName()).append(",").append(task.getDescription()).append(",").append(task.getStatus()).append(System.lineSeparator());
+                content.append(task.getId()).append(",")
+                        .append("TASK,")
+                        .append(task.getName()).append(",")
+                        .append(task.getDescription()).append(",")
+                        .append(task.getStatus());
+                content.append(System.lineSeparator());
             }
+
+            // Записываем эпики
             for (Epic epic : getEpics()) {
-                content.append("EPIC,").append(epic.getId()).append(",").append(epic.getName()).append(",").append(epic.getDescription()).append(",").append(epic.getStatus()).append(System.lineSeparator());
+                content.append(epic.getId()).append(",")
+                        .append("EPIC,")
+                        .append(epic.getName()).append(",")
+                        .append(epic.getDescription()).append(",")
+                        .append(epic.getStatus());
+                content.append(System.lineSeparator());
             }
+
+            // Записываем подзадачи
             for (Subtask subtask : getSubtasks()) {
-                content.append("SUBTASK,").append(subtask.getId()).append(",").append(subtask.getName()).append(",").append(subtask.getDescription()).append(",").append(subtask.getStatus()).append(",").append(subtask.getEpicID()).append(System.lineSeparator());
+                content.append(subtask.getId()).append(",")
+                        .append("SUBTASK,")
+                        .append(subtask.getName()).append(",")
+                        .append(subtask.getDescription()).append(",")
+                        .append(subtask.getStatus()).append(",")
+                        .append(subtask.getEpicID());
+                content.append(System.lineSeparator());
             }
+
+            // Записываем содержимое в файл
             Files.writeString(file.toPath(), content.toString());
         } catch (IOException e) {
             throw new ManagerSaveException("Ошибка при сохранении задач в файл: " + file.getPath(), e);
