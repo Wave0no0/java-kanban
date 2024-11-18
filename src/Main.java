@@ -1,13 +1,15 @@
-import com.yandex.taskmanager.manager.TaskManager;
+import com.yandex.taskmanager.manager.FileBackedTaskManager;
 import com.yandex.taskmanager.manager.Managers;
 import com.yandex.taskmanager.Status;
 import com.yandex.taskmanager.task.Task;
 import com.yandex.taskmanager.task.Epic;
 import com.yandex.taskmanager.task.Subtask;
 
+import java.io.File;
+
 public class Main {
 
-    private static final TaskManager taskManager = Managers.getDefault();
+    private static final FileBackedTaskManager taskManager = new FileBackedTaskManager(new File("tasks.csv"));
 
     public static void main(String[] args) {
         addTasks();
