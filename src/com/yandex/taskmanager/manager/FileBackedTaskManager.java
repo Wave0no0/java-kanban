@@ -101,6 +101,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     private Subtask createSubtask(String[] parts, int id) {
         return new Subtask(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()), Integer.parseInt(parts[5]));
     }
+
     private void saveToFile() {
         StringBuilder content = new StringBuilder();
         try {
