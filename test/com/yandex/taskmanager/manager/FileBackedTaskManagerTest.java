@@ -82,17 +82,11 @@ class FileBackedTaskManagerTest {
         File file = Files.createTempFile("tasks", ".csv").toFile();
         file.deleteOnExit();
 
-        String validData = "1,TASK,Task 1,Description 1\n" +
-                "2,TASK,Task 2,Description 2\n"; //
-        Files.writeString(file.toPath(), validData);
+        String invalidData = "1,TASK,Task 1,Description 1\n" +
+                "2,TASK,Task 2,Description 2\n";
+        Files.writeString(file.toPath(), invalidData);
 
-        try {
-            new FileBackedTaskManager(file);
-        } catch (ManagerSaveException e) {
-            fail("Expected no exception, but got: " + e);
-        } catch (Exception e) {
-            fail("Expected no exception, but got: " + e);
-        }
+        assertDoesNotThrow(() -> new FileBackedTaskManager(file));
     }
     @Test
     void testLoadEpicWithSubtasksAndCheckRelationships() throws IOException {
