@@ -78,13 +78,13 @@ class FileBackedTaskManagerTest {
         file.delete();
     }
     @Test
-    void testLoadInvalidDataFormat() throws IOException {
+    void testLoadValidDataFormat() throws IOException {
         File file = Files.createTempFile("tasks", ".csv").toFile();
         file.deleteOnExit();
 
-        String invalidData = "1,TASK,Task 1,Description 1\n" +
+        String validData = "1,TASK,Task 1,Description 1\n" +
                 "2,TASK,Task 2,Description 2\n";
-        Files.writeString(file.toPath(), invalidData);
+        Files.writeString(file.toPath(), validData);
 
         assertDoesNotThrow(() -> new FileBackedTaskManager(file));
     }
