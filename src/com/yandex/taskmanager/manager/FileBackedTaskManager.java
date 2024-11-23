@@ -8,10 +8,17 @@ import com.yandex.taskmanager.Status;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.TreeSet;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
 
     private final File file;
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
 
     public FileBackedTaskManager(File file) {
         this.file = file;
@@ -55,21 +62,21 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
                 switch (taskType) {
                     case "TASK":
-                        if (parts.length != 5) {
+                        if (parts.length != 7) { // Задачи имеют 7 полей
                             throw new ManagerSaveException("Неверное количество полей для задачи: " + line);
                         }
                         Task task = createTask(parts, id);
                         addTask(task);
                         break;
                     case "EPIC":
-                        if (parts.length != 5) {
+                        if (parts.length != 7) { // Эпики имеют 7 полей
                             throw new ManagerSaveException("Неверное количество полей для эпика: " + line);
                         }
                         Epic epic = createEpic(parts, id);
                         addEpic(epic);
                         break;
                     case "SUBTASK":
-                        if (parts.length != 6) {
+                        if (parts.length != 8) { // Подзадачи имеют 8 полей
                             throw new ManagerSaveException("Неверное количество полей для подзадачи: " + line);
                         }
                         Subtask subtask = createSubtask(parts, id);
@@ -91,7 +98,10 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     private Task createTask(String[] parts, int id) {
-        return new Task(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()));
+        Duration duration = parts[5].isEmpty() || parts[5].equals("null") ? null : Duration.parse(parts[5]);
+        LocalDateTime startTime = parts[6].isEmpty() || parts[6].equals("null") ? null : LocalDateTime.parse(parts[6], DATE_TIME_FORMATTER);
+
+        return new Task(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()), duration, startTime);
     }
 
     private Epic createEpic(String[] parts, int id) {
@@ -99,14 +109,18 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     private Subtask createSubtask(String[] parts, int id) {
-        return new Subtask(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()), Integer.parseInt(parts[5]));
+        Duration duration = parts[5].isEmpty() || parts[5].equals("null") ? null : Duration.parse(parts[5]);
+        LocalDateTime startTime = parts[6].isEmpty() || parts[6].equals("null") ? null : LocalDateTime.parse(parts[6], DATE_TIME_FORMATTER);
+        int epicID = Integer.parseInt(parts[7]);
+
+        return new Subtask(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()), epicID, duration, startTime);
     }
 
     private void saveToFile() {
         StringBuilder content = new StringBuilder();
         try {
             // Записываем заголовки
-            content.append("id,type,name,description,status").append(System.lineSeparator());
+            content.append("id,type,name,description,status,duration,startTime,epicID").append(System.lineSeparator());
 
             // Записываем задачи
             for (Task task : getTasks()) {
@@ -114,7 +128,10 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                         .append("TASK,")
                         .append(task.getName()).append(",")
                         .append(task.getDescription()).append(",")
-                        .append(task.getStatus()).append(System.lineSeparator());
+                        .append(task.getStatus()).append(",")
+                        .append(task.getDuration() != null ? task.getDuration() : "null").append(",")
+                        .append(task.getStartTime() != null ? task.getStartTime().format(DATE_TIME_FORMATTER) : "null")
+                        .append(System.lineSeparator());
             }
 
             // Записываем эпики
@@ -123,7 +140,9 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                         .append("EPIC,")
                         .append(epic.getName()).append(",")
                         .append(epic.getDescription()).append(",")
-                        .append(epic.getStatus()).append(System.lineSeparator());
+                        .append(epic.getStatus()).append(",")
+                        .append("null,null") // Эпики не имеют duration и startTime
+                        .append(System.lineSeparator());
             }
 
             // Записываем подзадачи
@@ -133,15 +152,16 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                         .append(subtask.getName()).append(",")
                         .append(subtask.getDescription()).append(",")
                         .append(subtask.getStatus()).append(",")
-                        .append(subtask.getEpicID()).append(System.lineSeparator());
+                        .append(subtask.getDuration() != null ? subtask.getDuration() : "null").append(",")
+                        .append(subtask.getStartTime() != null ? subtask.getStartTime().format(DATE_TIME_FORMATTER) : "null").append(",")
+                        .append(subtask.getEpicID())
+                        .append(System.lineSeparator());
             }
 
             // Записываем содержимое в файл
             Files.writeString(file.toPath(), content.toString());
         } catch (IOException e) {
             throw new ManagerSaveException("Ошибка при сохранении задач в файл: " + file.getPath(), e);
-        } catch (Exception e) {
-            throw new ManagerSaveException("Неизвестная ошибка при сохранении задач: " + e.getMessage(), e);
         }
     }
 
@@ -206,5 +226,12 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         Subtask deletedSubtask = super.deleteSubtaskByID(id);
         saveToFile();
         return deletedSubtask;
+    }
+
+    public TreeSet<Task> getPrioritizedTasks() {
+        TreeSet<Task> prioritizedTasks = new TreeSet<>(Comparator.comparing(Task::getStartTime, Comparator.nullsLast(Comparator.naturalOrder())));
+        prioritizedTasks.addAll(getTasks());
+        prioritizedTasks.addAll(getSubtasks());
+        return prioritizedTasks;
     }
 }

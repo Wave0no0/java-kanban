@@ -22,6 +22,12 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Task addTask(Task task) {
+        // Проверяем пересечения с существующими задачами
+        for (Task existingTask : tasks.values()) {
+            if (existingTask.isOverlapping(task)) {
+                throw new ManagerSaveException("Задача пересекается с существующей задачей.");
+            }
+        }
         task.setId(getNextID());
         tasks.put(task.getId(), task);
         return task;
@@ -46,6 +52,12 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Task updateTask(Task task) {
+        // Проверяем пересечения с существующими задачами
+        for (Task existingTask : tasks.values()) {
+            if (existingTask.getId() != task.getId() && existingTask.isOverlapping(task)) {
+                throw new ManagerSaveException("Задача пересекается с существующей задачей.");
+            }
+        }
         Integer taskID = task.getId();
         if (!tasks.containsKey(taskID)) {
             return null;
