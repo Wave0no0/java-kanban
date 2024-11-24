@@ -18,11 +18,12 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     private final File file;
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-
+    private TreeSet<Task> prioritizedTasks;  // Кэшируем приоритетные задачи
+    private boolean isPrioritizedTasksValid = false;  // Флаг актуальности приоритетных задач
 
     public FileBackedTaskManager(File file) {
         this.file = file;
-        createFileIfNotExists(); // Создаем файл, если он не существует
+        createFileIfNotExists();  // Создаем файл, если он не существует
         loadFromFile();
     }
 
@@ -165,10 +166,18 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         }
     }
 
+    private void updatePrioritizedTasks() {
+        prioritizedTasks = new TreeSet<>(Comparator.comparing(Task::getStartTime, Comparator.nullsLast(Comparator.naturalOrder())));
+        prioritizedTasks.addAll(getTasks());
+        prioritizedTasks.addAll(getSubtasks());
+        isPrioritizedTasksValid = true;  // Список актуален
+    }
+
     @Override
     public Task addTask(Task task) {
         Task savedTask = super.addTask(task);
         saveToFile();
+        isPrioritizedTasksValid = false;  // Список нужно обновить
         return savedTask;
     }
 
@@ -176,6 +185,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public Epic addEpic(Epic epic) {
         Epic savedEpic = super.addEpic(epic);
         saveToFile();
+        isPrioritizedTasksValid = false;
         return savedEpic;
     }
 
@@ -183,6 +193,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public Subtask addSubtask(Subtask subtask) {
         Subtask savedSubtask = super.addSubtask(subtask);
         saveToFile();
+        isPrioritizedTasksValid = false;
         return savedSubtask;
     }
 
@@ -190,6 +201,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public Task updateTask(Task task) {
         Task updatedTask = super.updateTask(task);
         saveToFile();
+        isPrioritizedTasksValid = false;
         return updatedTask;
     }
 
@@ -197,6 +209,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public Epic updateEpic(Epic epic) {
         Epic updatedEpic = super.updateEpic(epic);
         saveToFile();
+        isPrioritizedTasksValid = false;
         return updatedEpic;
     }
 
@@ -204,6 +217,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public Subtask updateSubtask(Subtask subtask) {
         Subtask updatedSubtask = super.updateSubtask(subtask);
         saveToFile();
+        isPrioritizedTasksValid = false;
         return updatedSubtask;
     }
 
@@ -211,6 +225,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public Task deleteTaskByID(int id) {
         Task deletedTask = super.deleteTaskByID(id);
         saveToFile();
+        isPrioritizedTasksValid = false;
         return deletedTask;
     }
 
@@ -218,6 +233,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public Epic deleteEpicByID(int id) {
         Epic deletedEpic = super.deleteEpicByID(id);
         saveToFile();
+        isPrioritizedTasksValid = false;
         return deletedEpic;
     }
 
@@ -225,13 +241,14 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public Subtask deleteSubtaskByID(int id) {
         Subtask deletedSubtask = super.deleteSubtaskByID(id);
         saveToFile();
+        isPrioritizedTasksValid = false;
         return deletedSubtask;
     }
 
     public TreeSet<Task> getPrioritizedTasks() {
-        TreeSet<Task> prioritizedTasks = new TreeSet<>(Comparator.comparing(Task::getStartTime, Comparator.nullsLast(Comparator.naturalOrder())));
-        prioritizedTasks.addAll(getTasks());
-        prioritizedTasks.addAll(getSubtasks());
+        if (!isPrioritizedTasksValid) {
+            updatePrioritizedTasks();  // Обновляем список, если он устарел
+        }
         return prioritizedTasks;
     }
 }
