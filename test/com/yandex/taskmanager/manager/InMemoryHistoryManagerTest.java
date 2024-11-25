@@ -9,6 +9,8 @@ import com.yandex.taskmanager.task.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,12 +72,11 @@ class InMemoryHistoryManagerTest {
     public void getHistoryShouldReturnOldSubtaskAfterUpdate() {
         Epic flatRenovation = new Epic("Сделать ремонт", "Нужно успеть за отпуск");
         taskManager.addEpic(flatRenovation);
-        Subtask flatRenovationSubtask3 = new Subtask("Заказать книжный шкаф", "Из темного дерева",
-                flatRenovation.getId());
+        Subtask flatRenovationSubtask3 = new Subtask("Заказать книжный шкаф", "Из темного дерева", flatRenovation.getId());
         taskManager.addSubtask(flatRenovationSubtask3);
         taskManager.getSubtaskByID(flatRenovationSubtask3.getId());
         taskManager.updateSubtask(new Subtask(flatRenovationSubtask3.getId(), "Новое имя",
-                "новое описание", Status.IN_PROGRESS, flatRenovation.getId()));
+                "новое описание", Status.IN_PROGRESS, flatRenovation.getId(), Duration.ofHours(1), LocalDateTime.now())); // Обновите вызов конструктора
         List<Task> subtasks = taskManager.getHistory();
         Subtask oldSubtask = (Subtask) subtasks.get(0);
         assertEquals(flatRenovationSubtask3.getName(), oldSubtask.getName(),

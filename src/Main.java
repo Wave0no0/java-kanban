@@ -5,6 +5,8 @@ import com.yandex.taskmanager.task.Epic;
 import com.yandex.taskmanager.task.Subtask;
 
 import java.io.File;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class Main {
 
@@ -17,47 +19,59 @@ public class Main {
     }
 
     private static void addTasks() {
-        Task washFloor = new Task("Помыть полы", "Во всех комнатах");
+        // Задачи с явным указанием id
+        Task washFloor = new Task(1, "Помыть полы", "Во всех комнатах", Status.NEW,
+                Duration.ofHours(2), LocalDateTime.of(2023, 11, 24, 9, 0));
         taskManager.addTask(washFloor);
 
+        // Обновление задачи
         Task washFloorToUpdate = new Task(washFloor.getId(), "Не забыть помыть полы",
-                "Можно только кафель", Status.IN_PROGRESS);
+                "Можно только кафель", Status.IN_PROGRESS, Duration.ofHours(3),
+                LocalDateTime.of(2024, 11, 24, 12, 0));  // изменили время начала
         taskManager.updateTask(washFloorToUpdate);
-        taskManager.addTask(new Task("Купить продукты", "Список в заметках"));
 
-        Epic flatRenovation = new Epic("Купить мебель", "Нужно выбрать");
+        // Добавляем еще одну задачу с уникальным временем
+        taskManager.addTask(new Task(2, "Купить продукты", "Список в заметках", Status.NEW,
+                Duration.ofHours(1), LocalDateTime.of(2025, 11, 24, 13, 0)));  // изменили время начала
+
+        // Добавляем эпик с указанием id
+        Epic flatRenovation = new Epic(3, "Купить мебель", "Нужно выбрать", Status.NEW);
         taskManager.addEpic(flatRenovation);
-        Subtask flatRenovationSubtask1 = new Subtask("Купить паркет", "Обязательно светлый",
-                flatRenovation.getId());
-        Subtask flatRenovationSubtask2 = new Subtask("Установить новую технику", "Старую выкинуть",
-                flatRenovation.getId());
-        Subtask flatRenovationSubtask3 = new Subtask("Заказать кровать", "удобную",
-                flatRenovation.getId());
+
+        // Подзадачи с правильным порядком аргументов и уникальными временными интервалами
+        Subtask flatRenovationSubtask1 = new Subtask(4, "Купить паркет", "Обязательно светлый",
+                Status.NEW, flatRenovation.getId(), Duration.ofHours(5),
+                LocalDateTime.of(2024, 11, 25, 10, 0));  // изменили время
+
+        Subtask flatRenovationSubtask2 = new Subtask(5, "Установить новую технику", "Старую выкинуть",
+                Status.NEW, flatRenovation.getId(), Duration.ofHours(3),
+                LocalDateTime.of(2024, 11, 26, 14, 0));  // изменили время
+
+        Subtask flatRenovationSubtask3 = new Subtask(6, "Заказать кровать", "Удобную",
+                Status.NEW, flatRenovation.getId(), Duration.ofHours(2),
+                LocalDateTime.of(2024, 11, 27, 16, 0));  // изменили время
+
         taskManager.addSubtask(flatRenovationSubtask1);
         taskManager.addSubtask(flatRenovationSubtask2);
         taskManager.addSubtask(flatRenovationSubtask3);
+
+        // Обновляем статус одной из подзадач
         flatRenovationSubtask2.setStatus(Status.DONE);
         taskManager.updateSubtask(flatRenovationSubtask2);
     }
 
     private static void printAllTasks() {
         System.out.println("Задачи:");
-        for (Task task : taskManager.getTasks()) {
-            System.out.println(task);
-        }
-        System.out.println("Эпики:");
-        for (Epic epic : taskManager.getEpics()) {
-            System.out.println(epic);
+        taskManager.getTasks().forEach(System.out::println);
 
-            for (Task task : taskManager.getEpicSubtasks(epic)) {
-                System.out.println("--> " + task);
-            }
-        }
+        System.out.println("Эпики:");
+        taskManager.getEpics().forEach(epic -> {
+            System.out.println(epic);
+            taskManager.getEpicSubtasks(epic).forEach(subtask -> System.out.println("--> " + subtask));
+        });
 
         System.out.println("Подзадачи:");
-        for (Task subtask : taskManager.getSubtasks()) {
-            System.out.println(subtask);
-        }
+        taskManager.getSubtasks().forEach(System.out::println);
     }
 
     private static void printViewHistory() {
@@ -76,8 +90,6 @@ public class Main {
 
         System.out.println();
         System.out.println("История просмотров:");
-        for (Task task : taskManager.getHistory()) {
-            System.out.println(task);
-        }
+        taskManager.getHistory().forEach(System.out::println);
     }
 }
