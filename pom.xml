@@ -20,7 +20,7 @@
 
   <!-- Зависимости проекта -->
   <dependencies>
-    <!-- SLF4J API (для логирования) -->
+    <!-- SLF4J API -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -56,8 +56,12 @@
     </dependency>
   </dependencies>
 
+  <!-- Сборка проекта -->
   <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>test</testSourceDirectory>
     <plugins>
+      <!-- Maven Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -67,6 +71,27 @@
           <target>21</target>
         </configuration>
       </plugin>
+
+      <!-- Maven Surefire Plugin для запуска тестов -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
+
+  <!-- Репозитории -->
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
 </project>

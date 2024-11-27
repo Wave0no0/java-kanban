@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18d715da-af97-40f4-b926-518187124fb1" name="Changes" comment="sprint 9 some fix">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="18d715da-af97-40f4-b926-518187124fb1" name="Changes" comment="Добавлен pom.xml для управления зависимостями и сборки проекта">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-kanban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-kanban.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint_8-solution-time-and-duration" />
+        <entry key="$PROJECT_DIR$" value="sprint_9-solution-http-api" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,57 +52,57 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ApiClient.executor": "Run",
-    "Application.HttpTaskServer.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.TaskManagerServer.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.EpicTest.EpicToStringShouldReturnCorrectFormat.executor": "Run",
-    "JUnit.EpicTest.epicToStringShouldReturnCorrectFormat.executor": "Run",
-    "JUnit.EpicTest.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.testGetHistory.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.testLoadEpicWithSubtasksAndCheckRelationships.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.testLoadInvalidDataFormat.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.testLoadValidDataFormat.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.testSaveAndLoadEmptyFile.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.testSaveAndLoadEpicWithSubtasks.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.testSaveAndLoadMultipleTasks.executor": "Run",
-    "JUnit.FileBackedTaskManagerTest.testSaveAndLoadTasks.executor": "Run",
-    "JUnit.HttpTaskManagerTasksTest.executor": "Run",
-    "JUnit.HttpTaskManagerTasksTest.testAddTask.executor": "Run",
-    "JUnit.HttpTaskManagerTasksTest.testDeleteTask.executor": "Run",
-    "JUnit.HttpTaskManagerTasksTest.testDeleteTask_NotRemoved.executor": "Run",
-    "JUnit.HttpTaskManagerTasksTest.testGetTasks.executor": "Run",
-    "JUnit.HttpTaskManagerTasksTest.testPostTaskWithInvalidData.executor": "Run",
-    "JUnit.InMemoryHistoryManagerTest (1).executor": "Run",
-    "JUnit.InMemoryHistoryManagerTest.executor": "Run",
-    "JUnit.InMemoryHistoryManagerTest.getHistoryShouldReturnListOf10Tasks.executor": "Run",
-    "JUnit.InMemoryHistoryManagerTest.getHistoryShouldReturnOldSubtaskAfterUpdate.executor": "Run",
-    "JUnit.InMemoryTaskManagerTest.deleteEpicByIdShouldReturnNullIfKeyIsMissing.executor": "Run",
-    "JUnit.InMemoryTaskManagerTest.deleteTaskByIdShouldReturnNullIfKeyIsMissing.executor": "Run",
-    "JUnit.InMemoryTaskManagerTest.executor": "Run",
-    "JUnit.ManagersTest.executor": "Run",
-    "JUnit.SubtaskTest.executor": "Run",
-    "JUnit.SubtaskTest.subtaskToStringShouldReturnCorrectFormat.executor": "Run",
-    "JUnit.SubtaskTest.subtasksWithEqualIdShouldBeEqual.executor": "Run",
-    "JUnit.TaskTest (1).executor": "Run",
-    "JUnit.TaskTest.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#5 on sprint__9-solution-http-api",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Wave/java-kanban/libs/slf4j-api-1.7.36.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.25632185"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ApiClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HttpTaskServer.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TaskManagerServer.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.EpicTest.EpicToStringShouldReturnCorrectFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EpicTest.epicToStringShouldReturnCorrectFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EpicTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testGetHistory.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testLoadEpicWithSubtasksAndCheckRelationships.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testLoadInvalidDataFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testLoadValidDataFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testSaveAndLoadEmptyFile.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testSaveAndLoadEpicWithSubtasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testSaveAndLoadMultipleTasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testSaveAndLoadTasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testAddTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testDeleteTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testDeleteTask_NotRemoved.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testGetTasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testPostTaskWithInvalidData.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryHistoryManagerTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryHistoryManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryHistoryManagerTest.getHistoryShouldReturnListOf10Tasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryHistoryManagerTest.getHistoryShouldReturnOldSubtaskAfterUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryTaskManagerTest.deleteEpicByIdShouldReturnNullIfKeyIsMissing.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryTaskManagerTest.deleteTaskByIdShouldReturnNullIfKeyIsMissing.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryTaskManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ManagersTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubtaskTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubtaskTest.subtaskToStringShouldReturnCorrectFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubtaskTest.subtasksWithEqualIdShouldBeEqual.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TaskTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TaskTest.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#5 on sprint__9-solution-http-api&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Wave/java-kanban/libs/slf4j-api-1.7.36.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.25632185&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.yandex.taskmanager.task" />
@@ -459,7 +458,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732747227241</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Добавлен pom.xml для управления зависимостями и сборки проекта">
+      <option name="closed" value="true" />
+      <created>1732748344874</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1732748344874</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -490,7 +497,8 @@
     <MESSAGE value="spr 8 fix" />
     <MESSAGE value="spr 9 solution" />
     <MESSAGE value="sprint 9 some fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="sprint 9 some fix" />
+    <MESSAGE value="Добавлен pom.xml для управления зависимостями и сборки проекта" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен pom.xml для управления зависимостями и сборки проекта" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
