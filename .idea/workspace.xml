@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18d715da-af97-40f4-b926-518187124fb1" name="Changes" comment="Добавлен pom.xml для управления зависимостями и сборки проекта">
+    <list default="true" id="18d715da-af97-40f4-b926-518187124fb1" name="Changes" comment="успешная сборка Maven тесты прошли">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
@@ -466,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732748344874</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="успешная сборка Maven тесты прошли">
+      <option name="closed" value="true" />
+      <created>1732749661326</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1732749661326</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +506,8 @@
     <MESSAGE value="spr 9 solution" />
     <MESSAGE value="sprint 9 some fix" />
     <MESSAGE value="Добавлен pom.xml для управления зависимостями и сборки проекта" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен pom.xml для управления зависимостями и сборки проекта" />
+    <MESSAGE value="успешная сборка Maven тесты прошли" />
+    <option name="LAST_COMMIT_MESSAGE" value="успешная сборка Maven тесты прошли" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
