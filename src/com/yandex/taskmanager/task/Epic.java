@@ -9,7 +9,7 @@ import com.yandex.taskmanager.Status;
 public class Epic extends Task {
 
     private List<Subtask> subtaskList = new ArrayList<>();
-    private Duration duration;
+    private Duration duration; // Общая продолжительность
     private LocalDateTime startTime; // Дата и время начала самого раннего подзадачи
     private LocalDateTime endTime; // Дата и время завершения самой поздней подзадачи
 

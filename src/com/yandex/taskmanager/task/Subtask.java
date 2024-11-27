@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Subtask extends Task {
-
     private final int epicID;
     private LocalDateTime startTime; // Время начала
     private Duration duration; // Продолжительность
+    private LocalDateTime endTime; // Время завершения
 
     // Конструктор с параметрами
     public Subtask(int id, String name, String description, Status status, int epicID, Duration duration, LocalDateTime startTime) {
@@ -27,6 +27,7 @@ public class Subtask extends Task {
         this.epicID = epicID;
         this.duration = Duration.ZERO;
         this.startTime = null;
+        this.endTime = null; // Значение по умолчанию
     }
 
     // Геттеры и сеттеры
@@ -38,18 +39,26 @@ public class Subtask extends Task {
         return startTime;
     }
 
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
     @Override
     public void setStartTime(LocalDateTime startTime) {
         super.setStartTime(startTime);
-    }
-
-    public Duration getDuration() {
-        return duration;
+        this.startTime = startTime;
+        this.endTime = (startTime != null && duration != null) ? startTime.plus(duration) : null; // Обновляем endTime
     }
 
     @Override
     public void setDuration(Duration duration) {
         super.setDuration(duration);
+        this.duration = duration;
+        this.endTime = (startTime != null && duration != null) ? startTime.plus(duration) : null; // Обновляем endTime
     }
 
     @Override
@@ -57,7 +66,7 @@ public class Subtask extends Task {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
         String formattedStartTime = (startTime != null) ? startTime.format(formatter) : "null";
-        String formattedEndTime = (getEndTime() != null) ? getEndTime().format(formatter) : "null";
+        String formattedEndTime = (endTime != null) ? endTime.format(formatter) : "null";
 
         return "Task.Subtask{" +
                 "name='" + getName() + '\'' +
