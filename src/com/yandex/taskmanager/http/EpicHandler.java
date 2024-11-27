@@ -1,17 +1,16 @@
 package com.yandex.taskmanager.http;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
+import com.google.gson.Gson;
 import com.yandex.taskmanager.manager.TaskManager;
 import com.yandex.taskmanager.task.Epic;
-import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-public class EpicHandler extends BaseHttpHandler implements HttpHandler {
+public class EpicHandler extends BaseHttpHandler {
     private final TaskManager taskManager;
     private final Gson gson;
 
@@ -30,11 +29,12 @@ public class EpicHandler extends BaseHttpHandler implements HttpHandler {
                 break;
             case "POST":
                 response = handlePost(exchange);
-                sendText(exchange, response, 201);
+                if (response != null) {
+                    sendText(exchange, response, 201);
+                }
                 break;
             case "DELETE":
                 handleDelete(exchange);
-                sendText(exchange, "Epic deleted", 200);
                 break;
             default:
                 sendNotFound(exchange);
@@ -54,15 +54,26 @@ public class EpicHandler extends BaseHttpHandler implements HttpHandler {
             body.append(line);
         }
 
-        Epic epic = gson.fromJson(body.toString(), Epic.class);
+        Epic epic;
+        try {
+            epic = gson.fromJson(body.toString(), Epic.class);
+        } catch (Exception e) {
+            sendText(exchange, "Invalid Epic JSON format", 400);
+            return null;
+        }
+
+        if (epic == null || epic.getName() == null || epic.getName().isEmpty()
+                || epic.getDescription() == null || epic.getDescription().isEmpty()) {
+            sendText(exchange, "Invalid Epic Data: name and description are required", 400);
+            return null;
+        }
+
         taskManager.addEpic(epic);
         return gson.toJson(epic);
     }
 
-    private void handleDelete(HttpExchange exchange) throws IOException {
-        String path = exchange.getRequestURI().getPath();
-        String[] parts = path.split("/");
-        int id = Integer.parseInt(parts[parts.length - 1]);
+    @Override
+    protected void deleteEntityById(int id) throws IOException {
         taskManager.deleteEpicByID(id);
     }
 }

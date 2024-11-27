@@ -3,30 +3,32 @@ package com.yandex.taskmanager.http;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpServer;
+import com.yandex.taskmanager.Status;
 import com.yandex.taskmanager.client.GsonUtils;
 import com.yandex.taskmanager.manager.TaskManager;
 import com.yandex.taskmanager.manager.Managers;
 import com.yandex.taskmanager.task.Epic;
 import com.yandex.taskmanager.task.Subtask;
 import com.yandex.taskmanager.task.Task;
-import com.yandex.taskmanager.Status;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-
 public class HttpTaskServer {
+    private static final Logger logger = LoggerFactory.getLogger(HttpTaskServer.class);
+
     private final TaskManager taskManager;
     private HttpServer server;
-
     private final Gson gson;
 
     public HttpTaskServer(TaskManager taskManager) {
         this.taskManager = taskManager;
 
-        // Регистрируем кастомные сериализаторы и десериализаторы
+        // Регистрация кастомных сериализаторов и десериализаторов
         this.gson = new GsonBuilder()
                 .registerTypeAdapter(Duration.class, new GsonUtils.DurationSerializer())
                 .registerTypeAdapter(Duration.class, new GsonUtils.DurationDeserializer())
@@ -37,29 +39,29 @@ public class HttpTaskServer {
 
     public void start() {
         try {
-            // Наполняем менеджер задачами
+            // Инициализация данных
             initializeData();
 
-            // Создаем сервер и добавляем обработчики
+            // Создание и настройка сервера
             server = HttpServer.create(new InetSocketAddress(8080), 0);
             server.createContext("/tasks", new TaskHandler(taskManager, gson));
             server.createContext("/subtasks", new SubtaskHandler(taskManager, gson));
             server.createContext("/epics", new EpicHandler(taskManager, gson));
             server.createContext("/history", new HistoryHandler(taskManager, gson));
             server.createContext("/prioritized", new PrioritizedHandler(taskManager, gson));
-            server.setExecutor(null); // создает стандартный исполнитель
+            server.setExecutor(null); // создаёт стандартный исполнитель
             server.start();
-            System.out.println("Server started on port 8080");
+
+            logger.info("Server started on port {}", server.getAddress().getPort());
         } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Error starting server: " + e.getMessage());
+            logger.error("Error starting server: {}", e.getMessage(), e);
         }
     }
 
     public void stop() {
         if (server != null) {
             server.stop(0);
-            System.out.println("Server stopped");
+            logger.info("Server stopped");
         }
     }
 
@@ -84,8 +86,7 @@ public class HttpTaskServer {
             taskManager.addSubtask(subtask1);
             taskManager.addSubtask(subtask2);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Error initializing data: " + e.getMessage());
+            logger.error("Error initializing data: {}", e.getMessage(), e);
         }
     }
 

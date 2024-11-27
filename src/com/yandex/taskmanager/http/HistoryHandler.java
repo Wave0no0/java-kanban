@@ -1,15 +1,14 @@
 package com.yandex.taskmanager.http;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
+import com.google.gson.Gson;
 import com.yandex.taskmanager.manager.TaskManager;
 import com.yandex.taskmanager.task.Task;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.List;
 
-public class HistoryHandler extends BaseHttpHandler implements HttpHandler {
+public class HistoryHandler extends BaseHttpHandler {
     private final TaskManager taskManager;
     private final Gson gson;
 
@@ -27,5 +26,10 @@ public class HistoryHandler extends BaseHttpHandler implements HttpHandler {
         } else {
             sendNotFound(exchange);
         }
+    }
+
+    @Override
+    protected void deleteEntityById(int id) {
+
     }
 }

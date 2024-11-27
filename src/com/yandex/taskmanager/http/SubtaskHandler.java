@@ -1,17 +1,16 @@
 package com.yandex.taskmanager.http;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
+import com.google.gson.Gson;
 import com.yandex.taskmanager.manager.TaskManager;
 import com.yandex.taskmanager.task.Subtask;
-import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-public class SubtaskHandler extends BaseHttpHandler implements HttpHandler {
+public class SubtaskHandler extends BaseHttpHandler {
     private final TaskManager taskManager;
     private final Gson gson;
 
@@ -30,11 +29,12 @@ public class SubtaskHandler extends BaseHttpHandler implements HttpHandler {
                 break;
             case "POST":
                 response = handlePost(exchange);
-                sendText(exchange, response, 201);
+                if (response != null) {
+                    sendText(exchange, response, 201);
+                }
                 break;
             case "DELETE":
                 handleDelete(exchange);
-                sendText(exchange, "Subtask deleted", 200);
                 break;
             default:
                 sendNotFound(exchange);
@@ -43,7 +43,6 @@ public class SubtaskHandler extends BaseHttpHandler implements HttpHandler {
     }
 
     private String handleGet(HttpExchange exchange) {
-        // Получаем список подзадач
         return gson.toJson(taskManager.getSubtasks());
     }
 
@@ -55,16 +54,26 @@ public class SubtaskHandler extends BaseHttpHandler implements HttpHandler {
             body.append(line);
         }
 
-        // Десериализация JSON в объект Subtask
-        Subtask subtask = gson.fromJson(body.toString(), Subtask.class);
+        Subtask subtask;
+        try {
+            subtask = gson.fromJson(body.toString(), Subtask.class);
+        } catch (Exception e) {
+            sendText(exchange, "Invalid Subtask JSON format", 400);
+            return null;
+        }
+
+        if (subtask == null || subtask.getName() == null || subtask.getName().isEmpty()
+                || subtask.getDescription() == null || subtask.getDescription().isEmpty()) {
+            sendText(exchange, "Invalid Subtask Data: name and description are required", 400);
+            return null;
+        }
+
         taskManager.addSubtask(subtask);
         return gson.toJson(subtask);
     }
 
-    private void handleDelete(HttpExchange exchange) throws IOException {
-        String path = exchange.getRequestURI().getPath();
-        String[] parts = path.split("/");
-        int id = Integer.parseInt(parts[parts.length - 1]);
+    @Override
+    protected void deleteEntityById(int id) throws IOException {
         taskManager.deleteSubtaskByID(id);
     }
 }

@@ -10,6 +10,8 @@
     </content>
     <orderEntry type="jdk" jdkName="corretto-21" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <!-- Убираем лишние зависимости SLF4J -->
+    <orderEntry type="library" exported="" name="googlecode.sli4j.slf4j.simple" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="JUnit5.8.1">
         <CLASSES>
@@ -26,6 +28,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="ejlchina.data.gson" level="project" />
+    <orderEntry type="library" exported="" name="ejlchina.data.gson" level="project" />
   </component>
 </module>
