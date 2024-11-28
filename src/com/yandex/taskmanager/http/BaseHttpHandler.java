@@ -14,7 +14,7 @@ public abstract class BaseHttpHandler implements HttpHandler {
         }
     }
 
-    protected void sendNotFound(HttpExchange exchange) throws IOException {//
+    protected void sendNotFound(HttpExchange exchange) throws IOException { //
         sendText(exchange, "Resource not found", 404);
     }
 
