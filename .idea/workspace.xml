@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="18d715da-af97-40f4-b926-518187124fb1" name="Changes" comment="." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="sprint_9-solution-http-api" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Wave0no0&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Wave0no0/java-kanban.git&quot;,
+    &quot;accountId&quot;: &quot;6ec120bb-50ea-4561-a91f-c6abf2e79a4b&quot;
+  }
+}</component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2or6LNfbxLNfJSZc4Zr5b0WdXum" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ApiClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HttpTaskServer.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TaskManagerServer.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.EpicTest.EpicToStringShouldReturnCorrectFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EpicTest.epicToStringShouldReturnCorrectFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EpicTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testGetHistory.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testLoadEpicWithSubtasksAndCheckRelationships.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testLoadInvalidDataFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testLoadValidDataFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testSaveAndLoadEmptyFile.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testSaveAndLoadEpicWithSubtasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testSaveAndLoadMultipleTasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileBackedTaskManagerTest.testSaveAndLoadTasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testAddTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testDeleteTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testDeleteTask_NotRemoved.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testGetTasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpTaskManagerTasksTest.testPostTaskWithInvalidData.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryHistoryManagerTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryHistoryManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryHistoryManagerTest.getHistoryShouldReturnListOf10Tasks.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryHistoryManagerTest.getHistoryShouldReturnOldSubtaskAfterUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryTaskManagerTest.deleteEpicByIdShouldReturnNullIfKeyIsMissing.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryTaskManagerTest.deleteTaskByIdShouldReturnNullIfKeyIsMissing.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InMemoryTaskManagerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ManagersTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubtaskTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubtaskTest.subtaskToStringShouldReturnCorrectFormat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SubtaskTest.subtasksWithEqualIdShouldBeEqual.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TaskTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TaskTest.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#5 on sprint__9-solution-http-api&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Wave/java-kanban/libs/slf4j-simple-1.7.36.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.25632185&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.yandex.taskmanager.task" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.HttpTaskManagerTasksTest">
+    <configuration name="HttpTaskServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.yandex.taskmanager.http.HttpTaskServer" />
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yandex.taskmanager.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EpicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yandex.taskmanager.task.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yandex.taskmanager.task" />
+      <option name="MAIN_CLASS_NAME" value="com.yandex.taskmanager.task.EpicTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HttpTaskManagerTasksTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yandex.taskmanager.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yandex.taskmanager.http" />
+      <option name="MAIN_CLASS_NAME" value="com.yandex.taskmanager.http.HttpTaskManagerTasksTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HttpTaskManagerTasksTest.testPostTaskWithInvalidData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yandex.taskmanager.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yandex.taskmanager.http" />
+      <option name="MAIN_CLASS_NAME" value="com.yandex.taskmanager.http.HttpTaskManagerTasksTest" />
+      <option name="METHOD_NAME" value="testPostTaskWithInvalidData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubtaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-kanban" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yandex.taskmanager.task.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yandex.taskmanager.task" />
+      <option name="MAIN_CLASS_NAME" value="com.yandex.taskmanager.task.SubtaskTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.HttpTaskManagerTasksTest" />
+        <item itemvalue="Application.HttpTaskServer" />
+        <item itemvalue="JUnit.HttpTaskManagerTasksTest.testPostTaskWithInvalidData" />
+        <item itemvalue="JUnit.EpicTest" />
+        <item itemvalue="JUnit.SubtaskTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="18d715da-af97-40f4-b926-518187124fb1" name="Changes" comment="" />
+      <created>1731615290168</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731615290168</updated>
+    </task>
+    <task id="LOCAL-00001" summary="something new">
+      <option name="closed" value="true" />
+      <created>1731616465844</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731616465845</updated>
+    </task>
+    <task id="LOCAL-00002" summary="some fix">
+      <option name="closed" value="true" />
+      <created>1731617806842</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731617806842</updated>
+    </task>
+    <task id="LOCAL-00003" summary="more fix">
+      <option name="closed" value="true" />
+      <created>1731618297370</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731618297370</updated>
+    </task>
+    <task id="LOCAL-00004" summary="some fix">
+      <option name="closed" value="true" />
+      <created>1731619217702</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731619217702</updated>
+    </task>
+    <task id="LOCAL-00005" summary="test">
+      <option name="closed" value="true" />
+      <created>1731624291051</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731624291051</updated>
+    </task>
+    <task id="LOCAL-00006" summary="test new branch">
+      <option name="closed" value="true" />
+      <created>1731701510986</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731701510986</updated>
+    </task>
+    <task id="LOCAL-00007" summary="spr6 solution even more fix  17?">
+      <option name="closed" value="true" />
+      <created>1731769349370</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731769349370</updated>
+    </task>
+    <task id="LOCAL-00008" summary="spr6 solution even more fix  17?">
+      <option name="closed" value="true" />
+      <created>1731769450617</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731769450617</updated>
+    </task>
+    <task id="LOCAL-00009" summary="1">
+      <option name="closed" value="true" />
+      <created>1731769569123</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731769569123</updated>
+    </task>
+    <task id="LOCAL-00010" summary="1">
+      <option name="closed" value="true" />
+      <created>1731769592944</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1731769592944</updated>
+    </task>
+    <task id="LOCAL-00011" summary="1">
+      <option name="closed" value="true" />
+      <created>1731771826927</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731771826927</updated>
+    </task>
+    <task id="LOCAL-00012" summary="1">
+      <option name="closed" value="true" />
+      <created>1731771921406</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731771921406</updated>
+    </task>
+    <task id="LOCAL-00013" summary="1">
+      <option name="closed" value="true" />
+      <created>1731772064771</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1731772064771</updated>
+    </task>
+    <task id="LOCAL-00014" summary="1">
+      <option name="closed" value="true" />
+      <created>1731774031630</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1731774031630</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed the issues.">
+      <option name="closed" value="true" />
+      <created>1731878270428</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1731878270428</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Some test">
+      <option name="closed" value="true" />
+      <created>1731965338273</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1731965338273</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Some test">
+      <option name="closed" value="true" />
+      <created>1731965523038</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1731965523038</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Some test">
+      <option name="closed" value="true" />
+      <created>1731965704691</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1731965704691</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Some test">
+      <option name="closed" value="true" />
+      <created>1731966499641</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1731966499641</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Пофиксил недочеты">
+      <option name="closed" value="true" />
+      <created>1732054519253</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732054519253</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Checkstyle fix">
+      <option name="closed" value="true" />
+      <created>1732054711757</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1732054711757</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Test fix">
+      <option name="closed" value="true" />
+      <created>1732055140366</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1732055140366</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Test fix">
+      <option name="closed" value="true" />
+      <created>1732055478065</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1732055478065</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Test fix">
+      <option name="closed" value="true" />
+      <created>1732055829907</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732055829907</updated>
+    </task>
+    <task id="LOCAL-00025" summary="spr 8 task done">
+      <option name="closed" value="true" />
+      <created>1732395969139</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1732395969139</updated>
+    </task>
+    <task id="LOCAL-00026" summary="spr 8 task done">
+      <option name="closed" value="true" />
+      <created>1732397599786</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732397599786</updated>
+    </task>
+    <task id="LOCAL-00027" summary="spr 8 fix">
+      <option name="closed" value="true" />
+      <created>1732484871745</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1732484871745</updated>
+    </task>
+    <task id="LOCAL-00028" summary="spr 9 solution">
+      <option name="closed" value="true" />
+      <created>1732673079105</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1732673079105</updated>
+    </task>
+    <task id="LOCAL-00029" summary="sprint 9 some fix">
+      <option name="closed" value="true" />
+      <created>1732744331409</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1732744331409</updated>
+    </task>
+    <task id="LOCAL-00030" summary="sprint 9 some fix">
+      <option name="closed" value="true" />
+      <created>1732746362125</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732746362125</updated>
+    </task>
+    <task id="LOCAL-00031" summary="sprint 9 some fix">
+      <option name="closed" value="true" />
+      <created>1732746579432</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1732746579432</updated>
+    </task>
+    <task id="LOCAL-00032" summary="sprint 9 some fix">
+      <option name="closed" value="true" />
+      <created>1732747227241</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1732747227241</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Добавлен pom.xml для управления зависимостями и сборки проекта">
+      <option name="closed" value="true" />
+      <created>1732748344874</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1732748344874</updated>
+    </task>
+    <task id="LOCAL-00034" summary="успешная сборка Maven тесты прошли">
+      <option name="closed" value="true" />
+      <created>1732749661326</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1732749661326</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Fix pom.xml and build configuration">
+      <option name="closed" value="true" />
+      <created>1732750626154</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1732750626154</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Fix pom.xml and build configuration">
+      <option name="closed" value="true" />
+      <created>1732751662709</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1732751662709</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Fix pom.xml and build configuration">
+      <option name="closed" value="true" />
+      <created>1732751694705</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1732751694705</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Fix pom.xml and build configuration">
+      <option name="closed" value="true" />
+      <created>1732751871495</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1732751871495</updated>
+    </task>
+    <task id="LOCAL-00039" summary="убрал Maven">
+      <option name="closed" value="true" />
+      <created>1732755913584</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1732755913584</updated>
+    </task>
+    <task id="LOCAL-00040" summary=".">
+      <option name="closed" value="true" />
+      <created>1732756181483</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1732756181483</updated>
+    </task>
+    <task id="LOCAL-00041" summary=".">
+      <option name="closed" value="true" />
+      <created>1732756743839</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1732756743839</updated>
+    </task>
+    <task id="LOCAL-00042" summary=".">
+      <option name="closed" value="true" />
+      <created>1732756974475</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1732756974475</updated>
+    </task>
+    <task id="LOCAL-00043" summary=".">
+      <option name="closed" value="true" />
+      <created>1732757118516</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1732757118516</updated>
+    </task>
+    <task id="LOCAL-00044" summary=".">
+      <option name="closed" value="true" />
+      <created>1732757754501</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1732757754501</updated>
+    </task>
+    <task id="LOCAL-00045" summary=".">
+      <option name="closed" value="true" />
+      <created>1732757756721</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1732757756722</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="something new" />
+    <MESSAGE value="more fix" />
+    <MESSAGE value="some fix" />
+    <MESSAGE value="test" />
+    <MESSAGE value="test new branch" />
+    <MESSAGE value="spr6 solution even more fix  17?" />
+    <MESSAGE value="1" />
+    <MESSAGE value="fixed the issues." />
+    <MESSAGE value="Some test" />
+    <MESSAGE value="Пофиксил недочеты" />
+    <MESSAGE value="Checkstyle fix" />
+    <MESSAGE value="Test fix" />
+    <MESSAGE value="spr 8 task done" />
+    <MESSAGE value="spr 8 fix" />
+    <MESSAGE value="spr 9 solution" />
+    <MESSAGE value="sprint 9 some fix" />
+    <MESSAGE value="Добавлен pom.xml для управления зависимостями и сборки проекта" />
+    <MESSAGE value="успешная сборка Maven тесты прошли" />
+    <MESSAGE value="Fix pom.xml and build configuration" />
+    <MESSAGE value="убрал Maven" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/yandex/taskmanager/test/task/SubtaskTest.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/yandex/taskmanager/test/task/TaskTest.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/yandex/taskmanager/test/manager/ManagersTest.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="com.yandex.taskmanager.manager.ManagerSaveException" package="com.yandex.taskmanager.manager" />
+          <option name="timeStamp" value="19" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

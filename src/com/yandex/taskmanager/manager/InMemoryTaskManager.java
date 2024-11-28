@@ -199,7 +199,15 @@ public class InMemoryTaskManager implements TaskManager {
         return task;
     }
 
-    // Вспомогательный метод для контроля статуса эпика при удалении или изменении подзадач
+    @Override
+    public List<Task> getPrioritizedTasks() {
+        // Создаем TreeSet для хранения задач, отсортированных по времени начала
+        TreeSet<Task> prioritizedTasks = new TreeSet<>(Comparator.comparing(Task::getStartTime, Comparator.nullsLast(Comparator.naturalOrder())));
+        prioritizedTasks.addAll(tasks.values());
+        prioritizedTasks.addAll(subtasks.values());
+        return new ArrayList<>(prioritizedTasks); // Преобразуем TreeSet в List и возвращаем
+    }
+
     private void updateEpicStatus(Epic epic) {
         int allIsDoneCount = 0;
         int allIsInNewCount = 0;

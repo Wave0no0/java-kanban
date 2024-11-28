@@ -11,7 +11,9 @@ import java.nio.file.Files;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.TreeSet;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
@@ -99,9 +101,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     private Task createTask(String[] parts, int id) {
-        Duration duration = parts[5].isEmpty() || parts[5].equals("null") ? null : Duration.parse(parts[5]);
-        LocalDateTime startTime = parts[6].isEmpty() || parts[6].equals("null") ? null : LocalDateTime.parse(parts[6], DATE_TIME_FORMATTER);
-
+        Duration duration = parts[5].equals("null") ? null : Duration.parse(parts[5]);
+        LocalDateTime startTime = parts[6].equals("null") ? null : LocalDateTime.parse(parts[6]);
         return new Task(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()), duration, startTime);
     }
 
@@ -110,11 +111,9 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     private Subtask createSubtask(String[] parts, int id) {
-        Duration duration = parts[5].isEmpty() || parts[5].equals("null") ? null : Duration.parse(parts[5]);
-        LocalDateTime startTime = parts[6].isEmpty() || parts[6].equals("null") ? null : LocalDateTime.parse(parts[6], DATE_TIME_FORMATTER);
-        int epicID = Integer.parseInt(parts[7]);
-
-        return new Subtask(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()), epicID, duration, startTime);
+        Duration duration = parts[5].equals("null") ? null : Duration.parse(parts[5]);
+        LocalDateTime startTime = parts[6].equals("null") ? null : LocalDateTime.parse(parts[6]);
+        return new Subtask(id, parts[2], parts[3], Status.valueOf(parts[4].toUpperCase()), Integer.parseInt(parts[7]), duration, startTime);
     }
 
     private void saveToFile() {
@@ -245,10 +244,11 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         return deletedSubtask;
     }
 
-    public TreeSet<Task> getPrioritizedTasks() {
+    @Override
+    public List<Task> getPrioritizedTasks() {
         if (!isPrioritizedTasksValid) {
             updatePrioritizedTasks();  // Обновляем список, если он устарел
         }
-        return prioritizedTasks;
+        return new ArrayList<>(prioritizedTasks); // Преобразуем TreeSet в List
     }
 }

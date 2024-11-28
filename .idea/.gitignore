@@ -1,3 +1,7 @@
-# Default ignored files
+# Ignore default files and folders
 /shelf/
-/workspace.xml
+.idea/
+
+# Exclude the `libs` folder and its contents
+!libs/
+!libs/*.jar

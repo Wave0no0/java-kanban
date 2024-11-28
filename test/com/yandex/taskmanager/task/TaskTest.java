@@ -28,13 +28,4 @@ class TaskTest {
         assertEquals(startTime, task.getStartTime(), "Дата начала задачи некорректна.");
         assertEquals(startTime.plus(duration), task.getEndTime(), "Дата окончания задачи некорректна.");
     }
-
-    @Test
-    public void taskToStringShouldReturnCorrectFormat() {
-        Task task = new Task(1, "Купить хлеб", "В Дикси у дома", Status.NEW);
-        task.setDuration(Duration.ofHours(1));
-        task.setStartTime(LocalDateTime.now());
-        String expected = "Task.Task{name='Купить хлеб', description='В Дикси у дома', id=1, status=NEW, duration=PT1H, startTime=" + task.getStartTime() + ", endTime=" + task.getEndTime() + "}";
-        assertEquals(expected, task.toString(), "Метод toString() возвращает неправильный формат.");
-    }
 }

@@ -6,37 +6,15 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Task {
+    private int id; // Идентификатор задачи
+    private String name; // Название задачи
+    private String description; // Описание задачи
+    private Status status; // Статус задачи (например, NEW, IN_PROGRESS, DONE)
+    private Duration duration; // Продолжительность задачи
+    private LocalDateTime startTime; // Время начала задачи
+    private LocalDateTime endTime; // Время завершения задачи
 
-    private final String name;
-    private final String description;
-    protected int id; // Изменено на protected
-    protected Status status; // Изменено на protected
-    protected Duration duration; // Поле для продолжительности задачи
-    protected LocalDateTime startTime; // Поле для даты начала задачи
-    protected LocalDateTime endTime; // Поле для даты окончания задачи
-
-    // Конструктор с ID
-    public Task(int id, String name, String description, Status status) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.status = status;
-        this.duration = Duration.ZERO; // По умолчанию продолжительность 0
-        this.startTime = null; // По умолчанию дата начала не задана
-        this.endTime = null; // По умолчанию дата окончания не задана
-    }
-
-    // Конструктор без ID
-    public Task(String name, String description) {
-        this.name = name;
-        this.description = description;
-        this.status = Status.NEW;
-        this.duration = Duration.ZERO; // По умолчанию продолжительность 0
-        this.startTime = null; // По умолчанию дата начала не задана
-        this.endTime = null; // По умолчанию дата окончания не задана
-    }
-
-    // Новый конструктор с параметрами продолжительности и времени начала
+    // Конструктор с параметрами
     public Task(int id, String name, String description, Status status, Duration duration, LocalDateTime startTime) {
         this.id = id;
         this.name = name;
@@ -44,24 +22,53 @@ public class Task {
         this.status = status;
         this.duration = duration;
         this.startTime = startTime;
-        this.endTime = (startTime != null && duration != null) ? startTime.plus(duration) : null; // Рассчитываем дату окончания
+        this.endTime = startTime != null ? startTime.plus(duration) : null; // Вычисляем время завершения
+    }
+
+    // Конструктор без id (для создания новых задач)
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.status = Status.NEW; // Статус по умолчанию
+        this.duration = null; // Значение по умолчанию
+        this.startTime = null; // Значение по умолчанию
+        this.endTime = null; // Значение по умолчанию
+    }
+
+    // Новый конструктор с id
+    public Task(int id, String name, String description, Status status) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.duration = Duration.ZERO; // Значение по умолчанию
+        this.startTime = null; // Значение по умолчанию
+        this.endTime = null; // Значение по умолчанию
     }
 
     // Геттеры и сеттеры
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Status getStatus() {
@@ -78,7 +85,7 @@ public class Task {
 
     public void setDuration(Duration duration) {
         this.duration = duration;
-        // Рассчитываем дату окончания при установке продолжительности
+        // Обновляем время завершения при изменении продолжительности
         if (startTime != null) {
             this.endTime = startTime.plus(duration);
         }
@@ -90,7 +97,7 @@ public class Task {
 
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
-        // Рассчитываем дату окончания при установке времени начала
+        // Обновляем время завершения при изменении времени начала
         if (duration != null) {
             this.endTime = startTime.plus(duration);
         }
@@ -100,40 +107,37 @@ public class Task {
         return endTime;
     }
 
+    // Метод для проверки пересечения с другой задачей
+    public boolean isOverlapping(Task other) {
+        if (this.startTime == null || this.endTime == null || other.startTime == null || other.endTime == null) {
+            return false; // Если у одной из задач нет времени начала или завершения, не проверяем пересечение
+        }
+        return this.startTime.isBefore(other.endTime) && other.startTime.isBefore(this.endTime);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Task task = (Task) object;
-        return id == task.id;
+        return id == task.id; // Сравнение по id
     }
 
     @Override
     public int hashCode() {
-        return Integer.hashCode(id);
+        return Integer.hashCode(id); // Генерация хэш-кода по id
     }
 
     @Override
     public String toString() {
-        return "Task.Task{" +
-                "name='" + name + '\'' +
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", id=" + id +
                 ", status=" + status +
                 ", duration=" + duration +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 '}';
     }
-
-    // Метод для проверки пересечения с другой задачей
-    public boolean isOverlapping(Task other) {
-        // Если у одной из задач нет времени начала или времени окончания, считаем, что пересечения нет
-        if (this.getStartTime() == null || this.getEndTime() == null || other.getStartTime() == null || other.getEndTime() == null) {
-            return false;
-        }
-        // Проверка пересечения временных промежутков
-        return !(this.getStartTime().isAfter(other.getEndTime()) || this.getEndTime().isBefore(other.getStartTime()));
-    }
-
 }
