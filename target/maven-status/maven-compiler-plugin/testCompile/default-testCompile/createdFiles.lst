@@ -1,8 +1,0 @@
-com\yandex\taskmanager\task\TaskTest.class
-com\yandex\taskmanager\manager\InMemoryTaskManagerTest.class
-com\yandex\taskmanager\http\HttpTaskManagerTasksTest.class
-com\yandex\taskmanager\task\EpicTest.class
-com\yandex\taskmanager\manager\FileBackedTaskManagerTest.class
-com\yandex\taskmanager\manager\ManagersTest.class
-com\yandex\taskmanager\task\SubtaskTest.class
-com\yandex\taskmanager\manager\InMemoryHistoryManagerTest.class
