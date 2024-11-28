@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18d715da-af97-40f4-b926-518187124fb1" name="Changes" comment="убрал Maven" />
+    <list default="true" id="18d715da-af97-40f4-b926-518187124fb1" name="Changes" comment="." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -511,7 +511,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732755913584</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary=".">
+      <option name="closed" value="true" />
+      <created>1732756181483</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1732756181483</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -546,7 +554,8 @@
     <MESSAGE value="успешная сборка Maven тесты прошли" />
     <MESSAGE value="Fix pom.xml and build configuration" />
     <MESSAGE value="убрал Maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="убрал Maven" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

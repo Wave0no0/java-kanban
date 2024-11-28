@@ -1,7 +1,10 @@
-# Default ignored files
+# Ignore default files and folders
 /shelf/
-
 .idea/
 
-!libs/
+# Ignore all JAR files
+*.jar
 
+# Exclude the `libs` folder and its contents
+!libs/
+!libs/*.jar
