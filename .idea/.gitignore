@@ -2,9 +2,6 @@
 /shelf/
 .idea/
 
-# Ignore all JAR files
-*.jar
-
 # Exclude the `libs` folder and its contents
 !libs/
 !libs/*.jar
