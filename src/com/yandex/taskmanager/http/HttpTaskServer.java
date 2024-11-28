@@ -10,16 +10,15 @@ import com.yandex.taskmanager.manager.Managers;
 import com.yandex.taskmanager.task.Epic;
 import com.yandex.taskmanager.task.Subtask;
 import com.yandex.taskmanager.task.Task;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import java.util.logging.Logger;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class HttpTaskServer {
-    private static final Logger logger = LoggerFactory.getLogger(HttpTaskServer.class);
+    // Заменили SLF4J на стандартный логгер
+    private static final Logger logger = Logger.getLogger(HttpTaskServer.class.getName());
 
     private final TaskManager taskManager;
     private HttpServer server;
@@ -52,15 +51,18 @@ public class HttpTaskServer {
             server.setExecutor(null); // создаёт стандартный исполнитель
             server.start();
 
-            logger.info("Server started on port {}", server.getAddress().getPort());
+            // Используем стандартный логгер Java
+            logger.info("Server started on port " + server.getAddress().getPort());
         } catch (IOException e) {
-            logger.error("Error starting server: {}", e.getMessage(), e);
+            // Используем стандартный логгер Java
+            logger.severe("Error starting server: " + e.getMessage());
         }
     }
 
     public void stop() {
         if (server != null) {
             server.stop(0);
+            // Используем стандартный логгер Java
             logger.info("Server stopped");
         }
     }
@@ -86,7 +88,8 @@ public class HttpTaskServer {
             taskManager.addSubtask(subtask1);
             taskManager.addSubtask(subtask2);
         } catch (Exception e) {
-            logger.error("Error initializing data: {}", e.getMessage(), e);
+            // Используем стандартный логгер Java
+            logger.severe("Error initializing data: " + e.getMessage());
         }
     }
 
